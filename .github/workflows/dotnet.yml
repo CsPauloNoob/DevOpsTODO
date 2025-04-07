@@ -41,4 +41,4 @@ jobs:
     # Docker push
     - name: Push Docker image to Docker Hub
       run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/DevOpsToDo:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/devopstodo:latest
