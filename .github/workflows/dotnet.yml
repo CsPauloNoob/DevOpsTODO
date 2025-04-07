@@ -41,4 +41,4 @@ jobs:
     # Docker push
     - name: Push Docker image to Docker Hub
       run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/minha-api:latest
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/devopstodo:latest ./DevOpsTODO
