@@ -9,13 +9,19 @@ namespace DevOpsTODO.Controllers
     [Route("[controller]")]
     public class NotaController : ControllerBase
     {
+        private readonly Contexto _contexto;
+
+        public NotaController(Contexto contexto)
+        {
+            _contexto = contexto;
+        }
+
+
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<ActionResult<List<Nota>>> GetAll()
         {
 
-            var ctx = new Contexto();
-
-            var result = await ctx.GetAll();
+            var result = await _contexto.GetAll();
 
             return Ok(result);
         }
@@ -24,11 +30,10 @@ namespace DevOpsTODO.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Nota nota)
         {
-            var ctx = new Contexto();
-            var result = await ctx.AdicionarNota(nota);
+            var result = await _contexto.AdicionarNota(nota);
 
             if (result)
-                return Ok("Nota adicionada com sucesso");
+                return Created("Nota adicionada com sucesso", nota);
             else
                 return BadRequest("Erro ao adicionar nota");
         }

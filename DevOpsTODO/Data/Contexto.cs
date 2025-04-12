@@ -9,6 +9,9 @@ namespace DevOpsTODO.Data
 
         public async Task<bool> AdicionarNota(Nota nota)
         {
+            if (nota is null || string.IsNullOrEmpty(nota.Conteudo))
+                return false;
+
             Notas.Add(nota);
             return await Task.FromResult(true);
         }

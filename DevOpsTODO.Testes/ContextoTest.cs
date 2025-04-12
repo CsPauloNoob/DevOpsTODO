@@ -33,5 +33,27 @@ namespace DevOpsTODO.Testes
             Assert.Contains(resultado, n => n.Titulo == "Teste 1" && n.Conteudo == "Conteúdo de teste 1");
             Assert.Contains(resultado, n => n.Titulo == "Teste 2" && n.Conteudo == "Conteúdo de teste 2");
         }
+
+        [Fact]
+        public void AdicionarNotaNull_DeveRetornarFalse()
+        {
+            var contexto = new Contexto();
+            Nota? nota = null;
+
+            var resultado = contexto.AdicionarNota(nota).Result;
+
+            Assert.False(resultado);
+        }
+
+        [Fact]
+        public void AdcionarNotaComConteudoVazio_DeveRetornarFalse()
+        {
+            var contexto = new Contexto();
+            var nota = new Nota { Titulo = "Teste", Conteudo = "" };
+
+            var resultado = contexto.AdicionarNota(nota).Result;
+
+            Assert.False(resultado);
+        }
     }
 }
