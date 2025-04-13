@@ -42,3 +42,11 @@ jobs:
     - name: Push Docker image to Docker Hub
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/devopstodo:latest
+
+    # Docker run
+    - name: Run Docker container
+      run: |
+        docker run -d --name devopstodo_container ${{ secrets.DOCKER_USERNAME }}/devopstodo:latest
+        sleep 30
+        docker stop devopstodo_container
+        docker rm devopstodo_container
